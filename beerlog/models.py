@@ -1,7 +1,7 @@
 from sqlmodel import SQLModel, Field
 from typing import Optional
-from pydantic import validator
-from statistics import validator
+from pydantic import validator 
+from statistics import mean
 from datetime import datetime
 
 
@@ -12,7 +12,8 @@ class Beer(SQLModel, table=True):
     flavor: int
     image: int
     cost: int
-    date: datetime = Filed(default_factory=datetime.now)
+    rate: int = 0
+    date: datetime = Field(default_factory=datetime.now)
 
     @validator("image", "flavor", "cost")
     def validate_rantings(cls, v, field):
